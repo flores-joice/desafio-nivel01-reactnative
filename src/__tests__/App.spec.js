@@ -5,7 +5,7 @@ import AxiosMock from "axios-mock-adapter";
 import api from "../services/api";
 const apiMock = new AxiosMock(api);
 
-import App from "../App";
+import App from "../../App";
 import { render, fireEvent, act } from "@testing-library/react-native";
 
 const wait = (amount = 0) => {
@@ -65,7 +65,7 @@ describe("Likes", () => {
 
     await actWait();
 
-    expect(getByTestId(`repository-likes-${repositoryId}`)).toHaveTextContent("1 curtida");
+    expect(getByTestId(`repository-like-${repositoryId}`)).toHaveTextContent("1 curtida");
 
     apiMock
       .onPost(`repositories/${repositoryId}/like`)
@@ -81,6 +81,6 @@ describe("Likes", () => {
 
     await actWait();
 
-    expect(getByTestId(`repository-likes-${repositoryId}`)).toHaveTextContent("2 curtidas");
+    expect(getByTestId(`repository-like-${repositoryId}`)).toHaveTextContent("2 curtidas");
   });
 });
